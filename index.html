@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Networking for Ethical Hacking</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .scene {
+            display: none;
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        .scene.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        ul {
+            list-style-type: disc;
+            padding-left: 1.5rem;
+        }
+
+        .diagram {
+            background-color: #1f2937;
+            padding: 1rem;
+            border: 1px solid #374151;
+            border-radius: 0.5rem;
+            margin: 1rem 0;
+            font-family: monospace;
+            color: #10b981;
+            white-space: pre-wrap;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-900 text-white font-sans">
+    <header class="sticky top-0 bg-gray-800 shadow-md z-50 px-4 py-3 flex items-center justify-between">
+        <div class="flex items-center space-x-3">
+            <img src="https://yt3.googleusercontent.com/lBO76cnFZAtUWyCvYcW1yzLR9BgvPqXvzTsRUhQRvDVlxjWHJUTmyo0W4h34zRTRzVtFM3LP=s160-c-k-c0x00ffffff-no-rj"
+                alt="Coding Chat Room Logo" class="h-10 w-10 rounded-full" />
+            <h1 class="text-xl font-bold text-blue-400">Coding Chat Room</h1>
+        </div>
+        <a href="https://www.youtube.com/@CodingChatRoom" target="_blank"
+            class="text-sm text-white bg-red-600 px-4 py-1.5 rounded hover:bg-red-700 transition">Subscribe</a>
+        </header>
+    <div class="container mx-auto px-4 py-10">
+        <h1 class="text-4xl font-bold mb-6 text-center text-blue-400">Networking for Ethical Hacking</h1>
+
+        <div class="flex flex-wrap justify-center gap-4 mb-10">
+            <script>
+                const titles = ["Introduction", "IP & MAC", "Types of Networks", "OSI Model", "Protocols", "Hacking Tools", "Importance", "Ethernet", "Ports", "Routing", "Communication", "Conclusion"];
+                window.addEventListener('DOMContentLoaded', () => {
+                    const navContainer = document.querySelector('.flex.flex-wrap');
+                    titles.forEach((title, i) => {
+                        const btn = document.createElement('button');
+                        btn.className = "bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded transition duration-300";
+                        btn.innerText = `${i + 1}. ${title}`;
+                        btn.onclick = () => showScene(`scene${i + 1}`);
+                        navContainer.appendChild(btn);
+                    });
+                });
+            </script>
+        </div>
+
+        <div id="scene1" class="scene active">
+            <h2 class="text-2xl font-bold mb-4">1. What is Networking?</h2>
+            <p class="mb-4">Networking connects devices to share information and resources like files, internet, or
+                printers. Devices communicate using protocols such as TCP/IP. It is essential for building secure
+                systems and performing penetration testing.</p>
+            <ul>
+                <li>Used in LANs, WANs, and the Internet</li>
+                <li>Supports communication, sharing, and access control</li>
+                <li>Helps ethical hackers understand data paths and vulnerabilities</li>
+            </ul>
+            <div class="diagram">
+                Client 1 ----> [Switch] <---- Client 2 | [Router] --- Internet </div>
+            </div>
+
+            <div id="scene2" class="scene">
+                <h2 class="text-2xl font-bold mb-4">2. IP Address and MAC Address</h2>
+                <p class="mb-4">An <strong>IP Address</strong> identifies your device on a network. It can change over
+                    time or based on network location. A <strong>MAC Address</strong> is assigned to the network
+                    interface card (NIC) by the manufacturer. It's used within LAN communication.</p>
+                <ul>
+                    <li>IP Address Example: 192.168.1.10</li>
+                    <li>MAC Address Example: 00:1A:2B:3C:4D:5E</li>
+                </ul>
+                <p class="mb-4">Attackers often spoof IP or MAC addresses to hide identity or bypass access controls.
+                </p>
+                <div class="diagram">
+                    Device: Laptop
+                    IP: 192.168.1.10
+                    MAC: 00:1A:2B:3C:4D:5E
+                </div>
+            </div>
+
+            <div id="scene3" class="scene">
+                <h2 class="text-2xl font-bold mb-4">3. Types of Networks</h2>
+                <p class="mb-4">Networks are categorized based on their range and purpose:</p>
+                <ul>
+                    <li><strong>PAN:</strong> Personal Area Network (Bluetooth, Tethering)</li>
+                    <li><strong>LAN:</strong> Local Area Network (Home, Office)</li>
+                    <li><strong>MAN:</strong> Metropolitan Area Network (Campus, City)</li>
+                    <li><strong>WAN:</strong> Wide Area Network (Internet)</li>
+                </ul>
+                <div class="diagram">
+                    PAN -> Mobile + Earphones
+                    LAN -> PCs in an Office
+                    MAN -> Network across University
+                    WAN -> Internet Worldwide
+                </div>
+            </div>
+
+            <div id="scene4" class="scene">
+                <h2 class="text-2xl font-bold mb-4">4. OSI Model</h2>
+                <p class="mb-4">The OSI model helps visualize how communication happens over a network. It includes 7
+                    layers:</p>
+                <ul>
+                    <li>1. Physical</li>
+                    <li>2. Data Link</li>
+                    <li>3. Network</li>
+                    <li>4. Transport</li>
+                    <li>5. Session</li>
+                    <li>6. Presentation</li>
+                    <li>7. Application</li>
+                </ul>
+                <div class="diagram">
+                    +---------------------+
+                    | 7. Application |
+                    | 6. Presentation |
+                    | 5. Session |
+                    | 4. Transport |
+                    | 3. Network |
+                    | 2. Data Link |
+                    | 1. Physical |
+                    +---------------------+
+                </div>
+            </div>
+
+            <div id="scene5" class="scene">
+                <h2 class="text-2xl font-bold mb-4">5. Protocols</h2>
+                <p class="mb-4">Protocols are rules that define how data is transferred. Important ones include:</p>
+                <ul>
+                    <li>HTTP/HTTPS - Web browsing</li>
+                    <li>FTP - File transfer</li>
+                    <li>DNS - Domain name resolution</li>
+                    <li>TCP/UDP - Data transport</li>
+                    <li>ICMP - Ping requests</li>
+                </ul>
+                <p class="mb-4">Hackers analyze or exploit protocols to intercept or manipulate data.</p>
+            </div>
+
+            <div id="scene6" class="scene">
+                <h2 class="text-2xl font-bold mb-4">6. Hacking Tools</h2>
+                <ul class="mb-4">
+                    <li><strong>Nmap:</strong> Scans ports and services</li>
+                    <li><strong>Wireshark:</strong> Captures and analyzes packets</li>
+                    <li><strong>Netcat:</strong> Opens raw TCP/UDP connections</li>
+                    <li><strong>Aircrack-ng:</strong> Cracks Wi-Fi passwords</li>
+                    <li><strong>Burp Suite:</strong> Web app vulnerability testing</li>
+                </ul>
+            </div>
+
+            <div id="scene7" class="scene">
+                <h2 class="text-2xl font-bold mb-4">7. Importance of Networking for Hackers</h2>
+                <p class="mb-4">Without networking knowledge, ethical hackers cannot perform tasks such as port
+                    scanning, sniffing, spoofing, or exploiting web apps. Networking is foundational to hacking.</p>
+            </div>
+
+            <div id="scene8" class="scene">
+                <h2 class="text-2xl font-bold mb-4">8. Ethernet</h2>
+                <p class="mb-4">Ethernet is a wired LAN technology that uses RJ45 cables. It is reliable and fast, used
+                    mostly in local networks. MAC addresses are used to identify devices.</p>
+                <div class="diagram">
+                    Router
+                    |
+                    Switch --- PC1
+                    |--- PC2
+                    |--- Printer
+                </div>
+            </div>
+
+            <div id="scene9" class="scene">
+                <h2 class="text-2xl font-bold mb-4">9. Ports</h2>
+                <p class="mb-4">Ports help devices identify specific services. Common ports:</p>
+                <ul>
+                    <li>80 - HTTP</li>
+                    <li>443 - HTTPS</li>
+                    <li>22 - SSH</li>
+                    <li>21 - FTP</li>
+                    <li>53 - DNS</li>
+                </ul>
+            </div>
+
+            <div id="scene10" class="scene">
+                <h2 class="text-2xl font-bold mb-4">10. Routing</h2>
+                <p class="mb-4">Routing decides the path for data. Routers use routing tables to forward packets to the
+                    right destination.</p>
+                <div class="diagram">
+                    [PC] --> [Router] --> [Internet] --> [Server]
+                </div>
+            </div>
+
+            <div id="scene11" class="scene">
+                <h2 class="text-2xl font-bold mb-4">11. Communication Between Devices</h2>
+                <p class="mb-4">Devices communicate by exchanging packets. These contain:</p>
+                <ul>
+                    <li>Source/Destination IP</li>
+                    <li>Source/Destination MAC</li>
+                    <li>Protocol</li>
+                    <li>Port Numbers</li>
+                    <li>Data Payload</li>
+                </ul>
+                <p>Hackers capture and analyze packets to extract data or detect weaknesses.</p>
+            </div>
+
+            <div id="scene12" class="scene">
+                <h2 class="text-2xl font-bold mb-4">12. Conclusion</h2>
+                <p class="mb-4">You’ve now covered networking fundamentals essential for ethical hacking. Practice these
+                    concepts in labs using tools to gain real experience.</p>
+            </div>
+        </div>
+
+        <script>
+            function showScene(id) {
+                document.querySelectorAll('.scene').forEach(scene => scene.classList.remove('active'));
+                const el = document.getElementById(id);
+                if (el) el.classList.add('active');
+            }
+        </script>
+</body>
+
+</html>
